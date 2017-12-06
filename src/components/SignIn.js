@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import { login } from "../actions";
+import { pay } from "../actions";
 import { connect } from 'react-redux';
 
 
@@ -24,18 +24,18 @@ class SignIn extends Component {
         
             </div>
 
-<div className='thirty'>
+            <div className='thirty'>
             33&#162; for unlimited plays
             </div>
             
             <div className='Username'>
-               <input type="text"  className='username_input' value={this.state.username}
+               <input type="text" maxlength="100"  className='username_input' value={this.state.username}
             placeholder="full name"
             onChange={this.handleUsernameChange.bind(this)}/> 
              </div>
             
             <div className='Creditcard'>
-            <input type="creditcard" className='creditcard_input' value={this.state.creditcard} placeholder="credit card" 
+            <input type="number" maxlength="19" className='creditcard_input' value={this.state.creditcard} placeholder="credit card" 
            onChange={this.handleCreditcardChange.bind(this)} />
              </div>
             
@@ -67,13 +67,13 @@ class SignIn extends Component {
 
 handleSubmit(event) {
     event.preventDefault()
-//    this.props.login(this.state.username, this.state.creditcard)
+    this.props.pay()
 }
 
 }
             
             
-//const mapActionsToProps = {
-//    login
-//}
-export default SignIn;
+const mapActionsToProps = {
+    pay
+}
+export default connect (null, mapActionsToProps)(SignIn);

@@ -8,6 +8,7 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import registerServiceWorker from './registerServiceWorker';
 import reducer from './reducers';
+import { fetchVideos } from './actions';
 
 const store = createStore(
     reducer,
@@ -16,6 +17,8 @@ const store = createStore(
         createLogger()
     )
 );
+
+store.dispatch(fetchVideos());
 
 ReactDOM.render(
     <Provider store={store}>

@@ -1,25 +1,31 @@
-import { findMatchingUser } from '../users';
+import $ from 'jquery-ajax';
 
-//export function login(username, creditcard) {
-//    return function(dispatch) {
-//        const user = findMatchingUser(username, creditcard);
-//        // If it username/password are correct, a user object will be available
-//        if (user) {
-//            // TODO #6 trigger a LOGIN_SUCCESS action here
-//dispatch(loginSuccess(user))
-//        }
-//    };
-//}
-//export function loginSuccess(user) {
-//    return {
-//        type: "LOGIN_SUCCESS",
-//        loggedInUser: user
-//    }
-//}
 
-export function unlock(video) {
+export function popup(number) {
     return{
-        type: "UNLOCK_SUCCESS",
-        video: video
+        type: "POPUP",
+        number: number
+    }
+}
+
+export function pay() {
+    return{
+        type: "PAY"
+    }
+}
+
+
+export function fetchVideos() {
+    return function (dispatch) {
+        $.get("/api.json", function (data) {
+            dispatch(receiveVideos(data));
+        })
+    }
+}
+
+function receiveVideos(videos) {
+    return {
+        type: "RECEIVE_VIDEOS",
+        videos
     }
 }

@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import { login } from "../actions";
-import { connect } from 'react-redux';
-
-
 
 class Unlocked extends Component {
     
@@ -16,7 +12,14 @@ class Unlocked extends Component {
            
         
             
-            <div className='Unlocked'> <iframe src="https://player.vimeo.com/video/97832025" width="300" height="150" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> Get a Job: Artist </div>
+            <div className='Unlocked'>
+                <iframe src={this.props.video.url} frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                <div> {this.props.video.title} </div>
+            </div>
+            
+//            <div className='Unlocked'> <img src={this.props.video.url}  
+//            onClick={this.handleClick.bind(this)}
+//            /> {this.props.video.title} </div>
             
           
             
@@ -29,13 +32,5 @@ class Unlocked extends Component {
        );
     }
     }
-
-function mapStateToProps(state) {
-    return {
-        loggedInUser:state.loggedInUser,
-        
-
-   }
-}
 
 export default Unlocked;

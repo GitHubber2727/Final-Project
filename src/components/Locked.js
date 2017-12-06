@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { login } from "../actions";
+import { popup } from "../actions";
 import { connect } from 'react-redux';
-
+ 
 
 
 class Locked extends Component {
@@ -18,7 +18,11 @@ class Locked extends Component {
             
            
             
-             <div className='Locked'> <img src={this.props.video.thumbnail} /> {this.props.video.title} </div>
+             <div className='Locked'> <img src={this.props.video.thumbnail}  
+            onClick={this.handleClick.bind(this)}
+            /> <div> {this.props.video.title} </div> </div>
+            
+            
             
 
 
@@ -27,14 +31,12 @@ class Locked extends Component {
 
        );
     }
+    
+    handleClick() {
+        console.log(this.props.video.number)
+        this.props.popup(this.props.video.number);
+    }
     }
 
-function mapStateToProps(state) {
-    return {
-        loggedInUser:state.loggedInUser,
-        
-
-   }
-}
-
-export default Locked;
+const mapActionsToProps={popup}
+export default connect (null, mapActionsToProps) (Locked);
